@@ -3,22 +3,7 @@ import { CoreModuleState } from './types'
 import { ActionTypes } from './actions'
 
 const initialState: CoreModuleState = {
-  userList: [
-    {
-      id: '1a',
-      name: 'Kate',
-      surname: 'Pavlova',
-      email: 'kate@pavlov-a.ru',
-      age: 29
-    },
-    {
-      id: '2a',
-      name: 'Alexey',
-      surname: 'Pavlov',
-      email: 'mail@pavlov-a.ru',
-      age: 30
-    }
-  ]
+  userList: []
 }
 
 export default function coreReducer(state = initialState, action: any): CoreModuleState {
@@ -36,8 +21,13 @@ export default function coreReducer(state = initialState, action: any): CoreModu
 
       case ActionTypes.editUser: {
         draft.userList = draft.userList.map((item) =>
-          item.id === action.payload.id ? Object.assign(draft, action.payload) : item
+          item.id === action.payload.id ? item = action.payload : item
         )
+        return draft
+      }
+
+      case ActionTypes.loadUserListSuccess: {
+        draft.userList = action.payload
         return draft
       }
 

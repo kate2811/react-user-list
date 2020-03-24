@@ -1,17 +1,13 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
 import { connectRouter } from 'connected-react-router'
-import { createBrowserHistory } from 'history'
 import thunk from 'redux-thunk'
 import * as reactRedux from 'react-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import coreReducer from './modules/core/reducer'
 
-const reducer = (history: any) =>  combineReducers({
-  router: connectRouter(history),
+const reducer = combineReducers({
   core: coreReducer
 })
-
-export const history = createBrowserHistory()
 
 export type State = ReturnType<typeof reducer>
 

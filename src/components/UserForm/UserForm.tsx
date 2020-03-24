@@ -1,4 +1,5 @@
 import React, { ChangeEvent, useCallback, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import style from './UserForm.module.scss'
 import { Link } from 'react-router-dom'
 import { User, UserData } from '../../modules/core/types'
@@ -14,6 +15,7 @@ const UserForm: React.FC<Props> = ({ onSave, user }) => {
       ? user
       : { name: '', surname: '', email: '', age: '' }
   )
+  const history = useHistory()
 
   const onInputChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -27,9 +29,10 @@ const UserForm: React.FC<Props> = ({ onSave, user }) => {
   const onSaveClick = useCallback(
     (e) => {
       e.preventDefault()
+      history.push('/')
       onSave(userData)
     },
-    [onSave, userData]
+    [onSave, history, userData]
   )
 
   return (

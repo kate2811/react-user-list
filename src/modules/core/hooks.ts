@@ -1,7 +1,7 @@
 import { useSelector } from '../../store'
 import { useDispatch } from 'react-redux'
 import { useCallback } from 'react'
-import {addUser, editUser, removeUser} from './thunks'
+import {addUser, editUser, loadUserList, removeUser} from './thunks'
 
 export function useUserId() {
   return useSelector((state) => state.core.userList).map((item) => item.id)
@@ -36,6 +36,16 @@ export function useEditUser() {
   return useCallback(
     (userData) => {
       return dispatch(editUser(userData))
+    },
+    [dispatch]
+  )
+}
+
+export function useLoadUserList() {
+  const dispatch = useDispatch()
+  return useCallback(
+    () => {
+      return dispatch(loadUserList())
     },
     [dispatch]
   )
