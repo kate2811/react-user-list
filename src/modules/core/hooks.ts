@@ -50,3 +50,7 @@ export function useLoadUserList() {
     [dispatch]
   )
 }
+
+export function useIsLoading() {
+  return useSelector((state) => state.core.isLoading)
+}

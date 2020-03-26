@@ -15,4 +15,5 @@ export type UserData = {
 
 export type CoreModuleState = {
   userList: User[]
+  isLoading: boolean
 }

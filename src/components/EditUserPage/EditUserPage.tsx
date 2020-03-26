@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useEditUser, useUserById } from '../../modules/core/hooks'
 import UserForm from '../UserForm'
 
@@ -14,7 +14,13 @@ const EditUserPage: React.FC = () => {
     throw new Error('user is not found')
   }
 
-  return <UserForm onSave={editUser} user={user} />
+  return (
+    <div>
+      <h2>Edit user</h2>
+      <UserForm onSave={editUser} user={user} />
+      <Link to={'/'}>Go back</Link>
+    </div>
+  )
 }
 
 export default EditUserPage

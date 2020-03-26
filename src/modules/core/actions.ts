@@ -17,5 +17,5 @@ export default {
   addUser: createAction(ActionTypes.addUser),
   editUser: createAction(ActionTypes.editUser),
   loadUserList: createAction<ActionTypes.loadUserList, void>(ActionTypes.loadUserList),
-  loadUserListSuccess: createAction(ActionTypes.loadUserListSuccess),
+  loadUserListSuccess: createAction(ActionTypes.loadUserListSuccess)
 }

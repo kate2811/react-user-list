@@ -1,5 +1,4 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux'
-import { connectRouter } from 'connected-react-router'
 import thunk from 'redux-thunk'
 import * as reactRedux from 'react-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'

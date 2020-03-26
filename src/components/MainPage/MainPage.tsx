@@ -7,7 +7,6 @@ const MainPage: React.FC = () => {
   const userIdList = useUserId()
   return (
     <div>
-      <h1>User list</h1>
       <ul>
         {userIdList.map((item, index) => (
           <ListItem key={index} id={item} />
