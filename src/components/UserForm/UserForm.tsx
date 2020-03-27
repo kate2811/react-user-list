@@ -66,16 +66,18 @@ const UserForm: React.FC<Props> = ({ onSave, user }) => {
           onSave(values)
         }}
       >
-        <Form>
-          <MyTextInput id="name" label="Name" name="name" placeholder="name" type="text" />
-          <MyTextInput id="surname" label="Surname" name="surname" placeholder="surname" type="text" />
-          <MyTextInput id="email" label="Email" name="email" placeholder="email" type="text" />
-          <MyTextInput id="age" label="Age" name="age" placeholder="age" type="number" />
-          <div className={cx('d-flex', 'justify-content-between', 'mt-4')}>
-            <button className={cx('btn', 'btn-primary', 'w-25')} type="submit">Save</button>
-            <Link className={cx('btn', 'btn-dark', 'w-25')} to={'/'}>Go back</Link>
-          </div>
-        </Form>
+        {props => (
+          <Form>
+            <MyTextInput id="name" label="Name" name="name" placeholder="name" type="text" />
+            <MyTextInput id="surname" label="Surname" name="surname" placeholder="surname" type="text" />
+            <MyTextInput id="email" label="Email" name="email" placeholder="email" type="text" />
+            <MyTextInput id="age" label="Age" name="age" placeholder="age" type="number" />
+            <div className={cx('d-flex', 'justify-content-between', 'mt-4')}>
+              <button className={cx('btn', 'btn-primary', 'w-25')} type="submit" disabled={!(props.dirty && props.isValid)}>Save</button>
+              <Link className={cx('btn', 'btn-dark', 'w-25')} to={'/'}>Go back</Link>
+            </div>
+          </Form>
+        )}
       </Formik>
     </div>
   )
