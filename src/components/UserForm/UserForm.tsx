@@ -39,10 +39,10 @@ const UserForm: React.FC<Props> = ({ onSave, user }) => {
       >
         {(props) => (
           <Form>
-            <TextInput id="name" label="Name" name="name" placeholder="name" type="text" />
-            <TextInput id="surname" label="Surname" name="surname" placeholder="surname" type="text" />
-            <TextInput id="email" label="Email" name="email" placeholder="email" type="text" />
-            <TextInput id="age" label="Age" name="age" placeholder="age" type="number" />
+            <TextInput id="name" label="Name" name="name" type="text" />
+            <TextInput id="surname" label="Surname" name="surname" type="text" />
+            <TextInput id="email" label="Email" name="email" type="text" />
+            <TextInput id="age" label="Age" name="age" type="number" />
             <div className={cx('d-flex', 'justify-content-between', 'mt-4')}>
               <button
                 className={cx('btn', 'btn-primary', 'w-25')}

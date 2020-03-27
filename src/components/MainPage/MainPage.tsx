@@ -4,6 +4,7 @@ import ListItem from './ListItem'
 import { useIsLoading, useUserId } from '../../modules/core/hooks'
 import PageLayout from '../PageLayout'
 import Loader from 'react-loader-spinner'
+import style from './MainPage.module.css'
 import cx from 'classnames'
 
 const MainPage: React.FC = () => {
@@ -13,26 +14,30 @@ const MainPage: React.FC = () => {
   return (
     <PageLayout title={'User list'}>
       {isLoading ? (
-        <Loader type="BallTriangle" color="#000000" height={20} width={20} />
+        <div className={cx(style.spinner, 'mx-auto')}>
+          <Loader type="Bars" color="#157FFB" height={40} width={40} />
+        </div>
       ) : (
         <>
           <table className={cx('table', 'table-hover')}>
             <thead className="bg-light">
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Surname</th>
-              <th scope="col">Email</th>
-              <th scope="col">Age</th>
-              <th scope="col">Actions</th>
-            </tr>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">Email</th>
+                <th scope="col">Age</th>
+                <th scope="col">Actions</th>
+              </tr>
             </thead>
             <tbody>
-            {userIdList.map((item, index) => (
-              <ListItem key={index} id={item} />
-            ))}
+              {userIdList && userIdList.map((item, index) => (
+                <ListItem key={index} id={item} />
+              ))}
             </tbody>
           </table>
-          <Link className={cx('btn', 'btn-primary', 'w-25')} to={'/add-user'}>Add user</Link>
+          <Link className={cx('btn', 'btn-primary', 'w-25')} to={'/add-user'}>
+            Add user
+          </Link>
         </>
       )}
     </PageLayout>

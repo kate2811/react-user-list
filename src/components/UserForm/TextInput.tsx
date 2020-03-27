@@ -4,7 +4,7 @@ import cx from "classnames"
 
 type Value = {
   label: string
-  placeholder: string
+  placeholder?: string
   type: string
   name: string
   id: string

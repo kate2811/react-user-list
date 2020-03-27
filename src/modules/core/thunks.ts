@@ -21,7 +21,7 @@ export function addUser(userData: UserData) {
   return function(dispatch: any, getState: () => State) {
     const id = v4()
     const currentUsers = getState().core.userList
-    const allUsers = [{ ...userData, id }, ...currentUsers]
+    const allUsers = [...currentUsers, { ...userData, id }]
     localStorage.setItem('users', JSON.stringify(allUsers))
     dispatch(actions.addUser({ ...userData, id }))
   }
@@ -38,7 +38,7 @@ export function loadUserList() {
   return function(dispatch: any) {
     dispatch(actions.loadUserList())
     new Promise((resolve) => {
-      setTimeout(() => resolve(JSON.parse(localStorage.getItem('users') as string)), 2000)
+      setTimeout(() => resolve(JSON.parse(localStorage.getItem('users') as string) || []), 2000)
     }).then((result) => dispatch(actions.loadUserListSuccess(result)))
   }
 }

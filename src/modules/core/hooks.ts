@@ -4,7 +4,8 @@ import { useCallback } from 'react'
 import {addUser, editUser, loadUserList, removeUser} from './thunks'
 
 export function useUserId() {
-  return useSelector((state) => state.core.userList).map((item) => item.id)
+  const userList = useSelector((state) => state.core.userList)
+  return userList ? userList.map((item) => item.id) : null
 }
 
 export function useUserById(id: string) {

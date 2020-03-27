@@ -21,9 +21,7 @@ export default function coreReducer(state = initialState, action: any): CoreModu
       }
 
       case ActionTypes.editUser: {
-        draft.userList = draft.userList.map((item) =>
-          item.id === action.payload.id ? (item = action.payload): item
-        )
+        draft.userList = draft.userList.map((item) => (item.id === action.payload.id ? action.payload : item))
         return draft
       }
 
