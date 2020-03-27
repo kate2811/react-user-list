@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react'
 import { useRemoveUser, useUserById } from '../../modules/core/hooks'
 import { Link } from 'react-router-dom'
+import cx from 'classnames'
 
 type Props = {
   id: string
@@ -19,11 +20,20 @@ const ListItem: React.FC<Props> = ({ id }) => {
     removeUser(id)
   }, [id, removeUser])
   return (
-    <li>
-      {`${name} ${surname}, ${email}, ${age}`}
-      <button onClick={onRemove}>remove</button>
-      <Link to={`/edit-user/${id}`}>edit</Link>
-    </li>
+    <tr>
+      <td>{name}</td>
+      <td>{surname}</td>
+      <td>{email}</td>
+      <td>{age}</td>
+      <td>
+        <button className={cx('btn', 'btn-sm', 'btn-light', 'mr-2')} onClick={onRemove}>
+          Remove
+        </button>
+        <Link className={cx('btn', 'btn-sm', 'btn-light')} to={`/edit-user/${id}`}>
+          Edit
+        </Link>
+      </td>
+    </tr>
   )
 }
 

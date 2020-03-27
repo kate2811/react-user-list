@@ -1,26 +1,43 @@
 import React from 'react'
-import { useHistory } from 'react-router-dom'
-import style from './UserForm.module.scss'
+import {Link, useHistory} from 'react-router-dom'
 import { User, UserData } from '../../modules/core/types'
 import { Formik, Form, useField } from 'formik'
 import * as Yup from 'yup'
+import cx from 'classnames'
 
 type Props = {
   onSave(userData: UserData): void
   user?: User
 }
 
-const MyTextInput = ({ ...props }) => {
-  // @ts-ignore
-  const [field, meta] = useField(props)
-  return (
-    <>
-      <input className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? <div className="error">{meta.error}</div> : null}
-    </>
-  )
+type Value = {
+  label: string
+  placeholder: string
+  type: string
+  name: string
+  id: string
 }
 
+const MyTextInput: React.FC<Value> = ({ label, ...props }) => {
+  const [field, meta] = useField(props)
+  return (
+    <div className="form-group">
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <input
+        className={
+          meta.touched
+            ? meta.error
+              ? cx('form-control', 'is-invalid')
+              : cx('form-control', 'is-valid')
+            : 'form-control'
+        }
+        {...field}
+        {...props}
+      />
+      {meta.touched && meta.error ? <div className="invalid-feedback">{meta.error}</div> : null}
+    </div>
+  )
+}
 
 const UserForm: React.FC<Props> = ({ onSave, user }) => {
   const history = useHistory()
@@ -49,12 +66,15 @@ const UserForm: React.FC<Props> = ({ onSave, user }) => {
           onSave(values)
         }}
       >
-        <Form className={style.form}>
-          <MyTextInput name='name' placeholder='name' type='text'/>
-          <MyTextInput name='surname' placeholder='surname' type='text'/>
-          <MyTextInput name='email' placeholder='email' type='text'/>
-          <MyTextInput name='age' placeholder='age' type='number'/>
-          <button type="submit">Save</button>
+        <Form>
+          <MyTextInput id="name" label="Name" name="name" placeholder="name" type="text" />
+          <MyTextInput id="surname" label="Surname" name="surname" placeholder="surname" type="text" />
+          <MyTextInput id="email" label="Email" name="email" placeholder="email" type="text" />
+          <MyTextInput id="age" label="Age" name="age" placeholder="age" type="number" />
+          <div className={cx('d-flex', 'justify-content-between', 'mt-4')}>
+            <button className={cx('btn', 'btn-primary', 'w-25')} type="submit">Save</button>
+            <Link className={cx('btn', 'btn-dark', 'w-25')} to={'/'}>Go back</Link>
+          </div>
         </Form>
       </Formik>
     </div>

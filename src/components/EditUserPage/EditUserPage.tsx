@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useEditUser, useUserById } from '../../modules/core/hooks'
 import UserForm from '../UserForm'
+import PageLayout from '../PageLayout'
 
 const EditUserPage: React.FC = () => {
   const editUser = useEditUser()
@@ -15,11 +16,9 @@ const EditUserPage: React.FC = () => {
   }
 
   return (
-    <div>
-      <h2>Edit user</h2>
+    <PageLayout title={'Edit user'}>
       <UserForm onSave={editUser} user={user} />
-      <Link to={'/'}>Go back</Link>
-    </div>
+    </PageLayout>
   )
 }
 
