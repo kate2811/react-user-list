@@ -29,11 +29,7 @@ const MainPage: React.FC = () => {
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-            <tbody>
-              {userIdList && userIdList.map((item, index) => (
-                <ListItem key={index} id={item} />
-              ))}
-            </tbody>
+            <tbody>{userIdList && userIdList.map((item, index) => <ListItem key={index} id={item} />)}</tbody>
           </table>
           <Link className={cx('btn', 'btn-primary', 'w-25')} to={'/add-user'}>
             Add user

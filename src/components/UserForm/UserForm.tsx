@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useMemo } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import { User, UserData } from '../../modules/core/types'
 import { Formik, Form } from 'formik'
@@ -13,29 +13,39 @@ type Props = {
 
 const UserForm: React.FC<Props> = ({ onSave, user }) => {
   const history = useHistory()
+
+  const validationSchema = useMemo(() => {
+    return Yup.object({
+      name: Yup.string()
+        .matches(/^[a-zA-Z\s]*$/, 'User name must contain only characters')
+        .required('Required'),
+      surname: Yup.string()
+        .matches(/^[a-zA-Z\s]*$/, 'User surname must contain only characters')
+        .required('Required'),
+      email: Yup.string()
+        .email('Invalid email address')
+        .required('Required'),
+      age: Yup.number()
+        .moreThan(0, 'User must be older than 0 year old')
+        .lessThan(60, 'User must be younger than 60 years old')
+        .required('Required')
+    })
+  }, [])
+
+  const onSubmit = useCallback(
+    (values: Omit<User, 'id'>) => {
+      history.push('/')
+      onSave(values)
+    },
+    [history, onSave]
+  )
+
   return (
     <div>
       <Formik
         initialValues={user ? user : { name: '', surname: '', email: '', age: '' }}
-        validationSchema={Yup.object({
-          name: Yup.string()
-            .matches(/^[a-zA-Z\s]*$/, 'User name must contain only characters')
-            .required('Required'),
-          surname: Yup.string()
-            .matches(/^[a-zA-Z\s]*$/, 'User surname must contain only characters')
-            .required('Required'),
-          email: Yup.string()
-            .email('Invalid email address')
-            .required('Required'),
-          age: Yup.number()
-            .moreThan(0, 'User must be older than 0 year old')
-            .lessThan(60, 'User must be younger than 60 years old')
-            .required('Required')
-        })}
-        onSubmit={(values) => {
-          history.push('/')
-          onSave(values)
-        }}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
       >
         {(props) => (
           <Form>
