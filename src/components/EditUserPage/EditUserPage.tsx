@@ -14,9 +14,8 @@ const EditUserPage: React.FC = () => {
   if (!user) {
     throw new Error('user is not found')
   }
-
   return (
-    <PageLayout title={'Edit user'}>
+    <PageLayout title={'Edit user'} breadcrumbs={[{ title: 'Edit user' }, { title: `${user.name} ${user.surname}` }]}>
       <UserForm onSave={editUser} user={user} />
     </PageLayout>
   )
