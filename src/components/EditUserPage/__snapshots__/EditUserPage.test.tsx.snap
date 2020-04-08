@@ -40,12 +40,14 @@ exports[`Edit User page Edit user page is rendered 1`] = `
         <li
           aria-current="page"
           class="breadcrumb-item active"
+          data-testid="path item"
         >
           Edit user
         </li>
         <li
           aria-current="page"
           class="breadcrumb-item active"
+          data-testid="path item"
         >
           mockename surname
         </li>
@@ -74,7 +76,6 @@ exports[`Edit User page Edit user page is rendered 1`] = `
             </label>
             <input
               class="form-control form-control"
-              data-testid="input-name"
               id="name"
               name="name"
               type="text"
@@ -91,7 +92,6 @@ exports[`Edit User page Edit user page is rendered 1`] = `
             </label>
             <input
               class="form-control form-control"
-              data-testid="input-surname"
               id="surname"
               name="surname"
               type="text"
@@ -108,7 +108,6 @@ exports[`Edit User page Edit user page is rendered 1`] = `
             </label>
             <input
               class="form-control form-control"
-              data-testid="input-email"
               id="email"
               name="email"
               type="text"
@@ -125,7 +124,6 @@ exports[`Edit User page Edit user page is rendered 1`] = `
             </label>
             <input
               class="form-control form-control"
-              data-testid="input-age"
               id="age"
               name="age"
               type="number"

@@ -1,11 +1,9 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import MainPage from './MainPage'
 import { MemoryRouter } from 'react-router-dom'
 
-const onClick = jest.fn()
-
-jest.mock('./TableItem', () => ({
+jest.mock('../TableItem', () => ({
   __esModule: true,
   default: function TableItem(props: any) {
     return (
@@ -37,25 +35,5 @@ describe('MainPage', () => {
       </MemoryRouter>
     )
     expect(getAllByTestId('tr').length).toEqual(3)
-  })
-
-  it('button is clickable', () => {
-    const { getByTestId } = render(
-      <MemoryRouter>
-        <MainPage isLoading={false} userIdList={null} />
-      </MemoryRouter>
-    )
-    fireEvent.click(getByTestId('button'))
-    expect(onClick).toHaveBeenCalledTimes(1)
-  })
-
-  it('button is clickable 2', () => {
-    const { getByTestId } = render(
-      <MemoryRouter>
-        <MainPage isLoading={false} userIdList={null} />
-      </MemoryRouter>
-    )
-    fireEvent.click(getByTestId('button'))
-    expect(onClick).toHaveBeenCalledTimes(1)
   })
 })

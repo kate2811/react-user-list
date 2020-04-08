@@ -17,7 +17,7 @@ const TableItem: React.FC<Props> = ({ user, onRemove }) => {
       <td>{email}</td>
       <td>{age}</td>
       <td>
-        <button className={cx('btn', 'btn-sm', 'btn-light', 'mr-2')} onClick={onRemove} data-testid={'removeButton'}>
+        <button className={cx('btn', 'btn-sm', 'btn-light', 'mr-2')} onClick={onRemove} data-testid={'remove button'}>
           Remove
         </button>
         <Link className={cx('btn', 'btn-sm', 'btn-light')} to={`/edit-user/${id}`}>

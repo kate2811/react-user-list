@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page Layout Page Layout is rendered 1`] = `
+<DocumentFragment>
+  <div>
+    <nav
+      class="navbar navbar-dark bg-primary justify-content-start"
+    >
+      <span
+        class="navbar-brand mb-0 h1"
+      >
+        UserList
+      </span>
+      <div
+        class="navbar-nav"
+      >
+        <a
+          class="nav-item nav-link active"
+          href="/"
+        >
+          Home
+        </a>
+      </div>
+    </nav>
+    <nav
+      aria-label="breadcrumb"
+    >
+      <ol
+        class="breadcrumb"
+      >
+        <li
+          class="breadcrumb-item"
+        >
+          <a
+            href="/"
+          >
+            Home
+          </a>
+        </li>
+        <li
+          aria-current="page"
+          class="breadcrumb-item active"
+          data-testid="path item"
+        >
+          path
+        </li>
+      </ol>
+    </nav>
+    <div
+      class="container mt-4"
+    >
+      <h1
+        class="mb-3"
+      >
+        Test
+      </h1>
+      <div>
+        Mock children
+      </div>
+      <button>
+        Mock action button
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

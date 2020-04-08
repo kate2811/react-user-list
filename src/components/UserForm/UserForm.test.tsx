@@ -4,58 +4,47 @@ import UserForm from './UserForm'
 import { MemoryRouter } from 'react-router-dom'
 
 const onSave = jest.fn()
+const userData = { name: 'kate', surname: 'pavlova', email: 'em@al.ru', age: 20, id: '1' }
 
 describe('User form', () => {
   beforeEach(() => {
     jest.clearAllMocks()
   })
 
-  it('Is user data loaded', () => {
-    const { getByTestId } = render(
+  it('Has form refilled data from props', () => {
+    const { getByLabelText } = render(
       <MemoryRouter>
-        <UserForm user={{ name: 'kate', surname: 'pavlova', email: 'em@al.ru', age: 20, id: '1' }} onSave={onSave} />
+        <UserForm user={userData} onSave={onSave} />
       </MemoryRouter>
     )
-    expect((getByTestId('input-name')).getAttribute('value')).toEqual('kate')
+
+    function CompareInputValue(labelText: string, expectedText: string) {
+      return expect(getByLabelText(labelText).getAttribute('value')).toEqual(expectedText)
+    }
+    CompareInputValue('Name', 'kate')
+    CompareInputValue('Surname', 'pavlova')
+    CompareInputValue('Email', 'em@al.ru')
+    CompareInputValue('Age', '20')
+  })
+
+  it('Are inputs empty', () => {
+    const { getByLabelText } = render(
+      <MemoryRouter>
+        <UserForm onSave={onSave} />
+      </MemoryRouter>
+    )
+    expect(getByLabelText('Name')).toBeEmpty()
+    expect(getByLabelText('Surname')).toBeEmpty()
+    expect(getByLabelText('Email')).toBeEmpty()
+    expect(getByLabelText('Age')).toBeEmpty()
   })
 
   it('Is save button disabled', () => {
     const { getByTestId } = render(
       <MemoryRouter>
-        <UserForm user={{ name: 'name', surname: 'surname', email: 'em@al.ru', age: 20, id: '1' }} onSave={onSave} />
+        <UserForm onSave={onSave} />
       </MemoryRouter>
     )
     expect(getByTestId('success-button')).toBeDisabled()
   })
-
-  it('Is input empty', () => {
-    const { getByTestId } = render(
-      <MemoryRouter>
-        <UserForm onSave={onSave} />
-      </MemoryRouter>
-    )
-    expect(getByTestId('input-name')).toBeEmpty()
-  })
-
-  it('Is input required', () => {
-    const { getByTestId } = render(
-      <MemoryRouter>
-        <UserForm onSave={onSave} />
-      </MemoryRouter>
-    )
-    expect(getByTestId('input-name')).not.toBeRequired()
-  })
-
-  it('Is form contains input', () => {
-    const { getByTestId } = render(
-      <MemoryRouter>
-        <UserForm onSave={onSave} />
-      </MemoryRouter>
-    )
-    const form = getByTestId('form')
-    const input = getByTestId('input-name')
-    expect(form).toContainElement(input)
-  })
-
-
 })

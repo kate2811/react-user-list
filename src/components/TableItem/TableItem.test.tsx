@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import TableItem from './TableItem'
 import { MemoryRouter } from 'react-router-dom'
 
@@ -8,8 +8,17 @@ const mockUser = { name: 'kate', surname: 'pavlova', email: 'kk@d.ru', age: 28, 
 
 describe('List Item', () => {
   it('Remove button is clickable', () => {
-    const { getByTestId } = render(<TableItem user={mockUser} onRemove={onClick} />)
+    const { getByTestId } = render(
+      <MemoryRouter>
+        <table>
+          <tbody>
+            <TableItem user={mockUser} onRemove={onClick} />
+          </tbody>
+        </table>
+      </MemoryRouter>
+    )
 
+    fireEvent.click(getByTestId('remove button'))
     expect(onClick).toHaveBeenCalledTimes(1)
   })
 })

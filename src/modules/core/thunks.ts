@@ -24,7 +24,6 @@ export function addUser(userData: UserData) {
     const allUsers = [...currentUsers, { ...userData, id }]
     localStorage.setItem('users', JSON.stringify(allUsers))
     dispatch(actions.addUser({ ...userData, id }))
-    console.log(history)
     history.push('/')
   }
 }
@@ -33,7 +32,6 @@ export function editUser(userData: User) {
   return function(dispatch: any, getState: () => State, { history }: any) {
     dispatch(actions.editUser(userData))
     updateUserList(getState)
-    console.log(history)
     history.push('/')
   }
 }

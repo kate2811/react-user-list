@@ -46,10 +46,10 @@ const UserForm: React.FC<Props> = ({ onSave, user }) => {
       >
         {(props) => (
           <Form data-testid="form">
-            <TextInput id="name" label="Name" name="name" type="text" data-testid="input-name" />
-            <TextInput id="surname" label="Surname" name="surname" type="text" data-testid="input-surname" />
-            <TextInput id="email" label="Email" name="email" type="text" data-testid="input-email"  />
-            <TextInput id="age" label="Age" name="age" type="number" data-testid="input-age"  />
+            <TextInput id="name" label="Name" name="name" type="text" />
+            <TextInput id="surname" label="Surname" name="surname" type="text" />
+            <TextInput id="email" label="Email" name="email" type="text" />
+            <TextInput id="age" label="Age" name="age" type="number" />
             <div className={cx('d-flex', 'justify-content-between', 'mt-4')}>
               <button
                 className={cx('btn', 'btn-primary', 'w-25')}

@@ -40,6 +40,7 @@ exports[`Add User Page Add user page is rendered 1`] = `
         <li
           aria-current="page"
           class="breadcrumb-item active"
+          data-testid="path item"
         >
           Add user
         </li>
@@ -68,7 +69,6 @@ exports[`Add User Page Add user page is rendered 1`] = `
             </label>
             <input
               class="form-control form-control"
-              data-testid="input-name"
               id="name"
               name="name"
               type="text"
@@ -85,7 +85,6 @@ exports[`Add User Page Add user page is rendered 1`] = `
             </label>
             <input
               class="form-control form-control"
-              data-testid="input-surname"
               id="surname"
               name="surname"
               type="text"
@@ -102,7 +101,6 @@ exports[`Add User Page Add user page is rendered 1`] = `
             </label>
             <input
               class="form-control form-control"
-              data-testid="input-email"
               id="email"
               name="email"
               type="text"
@@ -119,7 +117,6 @@ exports[`Add User Page Add user page is rendered 1`] = `
             </label>
             <input
               class="form-control form-control"
-              data-testid="input-age"
               id="age"
               name="age"
               type="number"

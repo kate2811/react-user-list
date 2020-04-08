@@ -14,7 +14,7 @@ const Breadcrumbs: React.FC<Props> = ({ breadcrumbs }) => {
         </li>
         {breadcrumbs &&
           breadcrumbs.map((item, index) => (
-            <li key={index} className="breadcrumb-item active" aria-current="page">
+            <li key={index} className="breadcrumb-item active" aria-current="page" data-testid={'path item'}>
               {item.to ? <Link to={item.to}>{item.title}</Link> : item.title}
             </li>
           ))}
