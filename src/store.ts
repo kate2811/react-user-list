@@ -3,6 +3,7 @@ import thunk from 'redux-thunk'
 import * as reactRedux from 'react-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import coreReducer from './modules/core/reducer'
+import { customHistory } from './history'
 
 const reducer = combineReducers({
   core: coreReducer
@@ -17,5 +18,5 @@ export const useSelector: <TSelected>(
 
 export default createStore(
   reducer,
-  composeWithDevTools({ name: 'UserList' })(applyMiddleware(thunk.withExtraArgument({})))
+  composeWithDevTools({ name: 'UserList' })(applyMiddleware(thunk.withExtraArgument({ history: customHistory })))
 )

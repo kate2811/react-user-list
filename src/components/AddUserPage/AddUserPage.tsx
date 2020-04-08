@@ -1,13 +1,12 @@
 import React from 'react'
-import { useAddUser } from '../../modules/core/hooks'
 import UserForm from '../UserForm'
 import PageLayout from '../PageLayout'
 
-const AddUserPage: React.FC = () => {
-  const addUser = useAddUser()
+const breadcrumbs = [{ title: 'Add user' }]
 
+const AddUserPage: React.FC<{ addUser: any }> = ({ addUser }) => {
   return (
-    <PageLayout title={'Add user'} breadcrumbs={[{ title: 'Add user'}]}>
+    <PageLayout title={'Add user'} breadcrumbs={breadcrumbs}>
       <UserForm onSave={addUser} />
     </PageLayout>
   )

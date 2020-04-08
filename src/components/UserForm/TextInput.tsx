@@ -14,11 +14,7 @@ const TextInput: React.FC<Value> = ({ label, ...props }) => {
   const [field, meta] = useField(props)
 
   const inputClassName = useMemo(() => {
-    return meta.touched
-      ? meta.error
-        ? cx('form-control', 'is-invalid')
-        : cx('form-control', 'is-valid')
-      : 'form-control'
+    return cx('form-control', meta.touched ? (meta.error ? 'is-invalid' : 'is-valid') : 'form-control')
   }, [meta.touched, meta.error])
 
   return (

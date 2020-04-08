@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { User, UserData } from '../../modules/core/types'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
@@ -12,8 +12,6 @@ type Props = {
 }
 
 const UserForm: React.FC<Props> = ({ onSave, user }) => {
-  const history = useHistory()
-
   const validationSchema = useMemo(() => {
     return Yup.object({
       name: Yup.string()
@@ -34,10 +32,9 @@ const UserForm: React.FC<Props> = ({ onSave, user }) => {
 
   const onSubmit = useCallback(
     (values: Omit<User, 'id'>) => {
-      history.push('/')
       onSave(values)
     },
-    [history, onSave]
+    [onSave]
   )
 
   return (
@@ -48,16 +45,17 @@ const UserForm: React.FC<Props> = ({ onSave, user }) => {
         onSubmit={onSubmit}
       >
         {(props) => (
-          <Form>
-            <TextInput id="name" label="Name" name="name" type="text" />
-            <TextInput id="surname" label="Surname" name="surname" type="text" />
-            <TextInput id="email" label="Email" name="email" type="text" />
-            <TextInput id="age" label="Age" name="age" type="number" />
+          <Form data-testid="form">
+            <TextInput id="name" label="Name" name="name" type="text" data-testid="input-name" />
+            <TextInput id="surname" label="Surname" name="surname" type="text" data-testid="input-surname" />
+            <TextInput id="email" label="Email" name="email" type="text" data-testid="input-email"  />
+            <TextInput id="age" label="Age" name="age" type="number" data-testid="input-age"  />
             <div className={cx('d-flex', 'justify-content-between', 'mt-4')}>
               <button
                 className={cx('btn', 'btn-primary', 'w-25')}
                 type="submit"
                 disabled={!(props.dirty && props.isValid)}
+                data-testid="success-button"
               >
                 Save
               </button>

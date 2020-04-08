@@ -1,7 +1,7 @@
 import { useSelector } from '../../store'
 import { useDispatch } from 'react-redux'
 import { useCallback } from 'react'
-import {addUser, editUser, loadUserList, removeUser} from './thunks'
+import { addUser, editUser, loadUserList, removeUser } from './thunks'
 
 export function useUserId() {
   const userList = useSelector((state) => state.core.userList)
@@ -44,14 +44,25 @@ export function useEditUser() {
 
 export function useLoadUserList() {
   const dispatch = useDispatch()
-  return useCallback(
-    () => {
-      return dispatch(loadUserList())
-    },
-    [dispatch]
-  )
+  return useCallback(() => {
+    return dispatch(loadUserList())
+  }, [dispatch])
 }
 
 export function useIsLoading() {
   return useSelector((state) => state.core.isLoading)
+}
+
+export function useTableItemProps(id: string) {
+  const removeUser = useRemoveUser()
+  const user = useUserById(id)
+
+  if (!user) {
+    throw new Error('user is not found')
+  }
+
+  const onRemove = useCallback(() => {
+    removeUser(id)
+  }, [id, removeUser])
+  return { user, onRemove }
 }

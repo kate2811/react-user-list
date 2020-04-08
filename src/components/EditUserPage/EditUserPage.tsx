@@ -1,21 +1,20 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import { useEditUser, useUserById } from '../../modules/core/hooks'
+import React, { useMemo } from 'react'
 import UserForm from '../UserForm'
 import PageLayout from '../PageLayout'
+import { User } from '../../modules/core/types'
 
-const EditUserPage: React.FC = () => {
-  const editUser = useEditUser()
-  const { id } = useParams()
-  if (!id) {
-    throw new Error('no user id is provided')
-  }
-  const user = useUserById(id)
-  if (!user) {
-    throw new Error('user is not found')
-  }
+type Props = {
+  editUser: any
+  user: User
+}
+
+const EditUserPage: React.FC<Props> = ({ editUser, user }) => {
+  const breadcrumbs = useMemo(() => {
+    return [{ title: 'Edit user' }, { title: `${user.name} ${user.surname}` }]
+  }, [user])
+
   return (
-    <PageLayout title={'Edit user'} breadcrumbs={[{ title: 'Edit user' }, { title: `${user.name} ${user.surname}` }]}>
+    <PageLayout title={'Edit user'} breadcrumbs={breadcrumbs}>
       <UserForm onSave={editUser} user={user} />
     </PageLayout>
   )

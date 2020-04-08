@@ -1,16 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import ListItem from './ListItem'
-import { useIsLoading, useUserId } from '../../modules/core/hooks'
+import TableItem from '../TableItem'
 import PageLayout from '../PageLayout'
 import Loader from 'react-loader-spinner'
 import style from './MainPage.module.css'
 import cx from 'classnames'
 
-const MainPage: React.FC = () => {
-  const userIdList = useUserId()
-  const isLoading = useIsLoading()
+type Props = {
+  isLoading: boolean
+  userIdList: string[] | null
+}
 
+const MainPage: React.FC<Props> = ({ isLoading, userIdList }) => {
   return (
     <PageLayout title={'User list'}>
       {isLoading ? (
@@ -29,7 +30,7 @@ const MainPage: React.FC = () => {
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-            <tbody>{userIdList && userIdList.map((item, index) => <ListItem key={index} id={item} />)}</tbody>
+            <tbody>{userIdList && userIdList.map((item, index) => <TableItem key={index} id={item} />)}</tbody>
           </table>
           <Link className={cx('btn', 'btn-primary', 'w-25')} to={'/add-user'}>
             Add user

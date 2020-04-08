@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import MainPage from '../MainPage'
 import AddUserPage from '../AddUserPage'
 import EditUserPage from '../EditUserPage'
 import { useLoadUserList } from '../../modules/core/hooks'
+import { customHistory } from '../../history'
 
 function App() {
   const loadUserList = useLoadUserList()
 
   useEffect(() => {
     loadUserList()
-  }, [])
+  }, [loadUserList])
 
   return (
-    <Router>
+    <Router history={customHistory}>
       <Switch>
         <Route path="/" exact>
           <MainPage />

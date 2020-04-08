@@ -18,19 +18,23 @@ export function removeUser(id: string) {
 }
 
 export function addUser(userData: UserData) {
-  return function(dispatch: any, getState: () => State) {
+  return function(dispatch: any, getState: () => State, { history }: any) {
     const id = v4()
     const currentUsers = getState().core.userList
     const allUsers = [...currentUsers, { ...userData, id }]
     localStorage.setItem('users', JSON.stringify(allUsers))
     dispatch(actions.addUser({ ...userData, id }))
+    console.log(history)
+    history.push('/')
   }
 }
 
 export function editUser(userData: User) {
-  return function(dispatch: any, getState: () => State) {
+  return function(dispatch: any, getState: () => State, { history }: any) {
     dispatch(actions.editUser(userData))
     updateUserList(getState)
+    console.log(history)
+    history.push('/')
   }
 }
 
