@@ -1607,7 +1607,7 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.9.2":
+"@babel/runtime@^7.5.4", "@babel/runtime@^7.9.2":
   version "7.9.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.9.2.tgz#d90df0583a3a252f09aaa619665367bae518db06"
   integrity sha512-NE2DtOdufG7R5vnfQUTehdTfNycfUANEtCa9PssN9O/xmTzP4E08UI797ixaei6hBEVL9BI/PsdJS5x7mWoB9Q==
@@ -2092,6 +2092,14 @@
     lodash "^4.17.15"
     redent "^3.0.0"
 
+"@testing-library/react-hooks@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/react-hooks/-/react-hooks-3.2.1.tgz#19b6caa048ef15faa69d439c469033873ea01294"
+  integrity sha512-1OB6Ksvlk6BCJA1xpj8/WWz0XVd1qRcgqdaFAq+xeC6l61Ucj0P6QpA5u+Db/x9gU4DCX8ziR5b66Mlfg0M2RA==
+  dependencies:
+    "@babel/runtime" "^7.5.4"
+    "@types/testing-library__react-hooks" "^3.0.0"
+
 "@testing-library/react@10.0.2":
   version "10.0.2"
   resolved "https://registry.yarnpkg.com/@testing-library/react/-/react-10.0.2.tgz#8eca7aa52d810cf7150048a2829fdc487162006d"
@@ -2201,6 +2209,14 @@
     "@types/istanbul-lib-coverage" "*"
     "@types/istanbul-lib-report" "*"
 
+"@types/jest-in-case@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@types/jest-in-case/-/jest-in-case-1.0.2.tgz#f4364d3e255a1aa9d001bcdeef3ab6d5f41aadee"
+  integrity sha512-1JOsX6y/gLa8SBEXEOMTFN8IMMetxB74ySw0Gv7+i3uhWLWQ2O7PA5Tz3FV4SH12v/gJEhCMNX7MHzPg6bbfrw==
+  dependencies:
+    "@types/jest" "*"
+    "@types/node" "*"
+
 "@types/jest@*":
   version "25.1.4"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-25.1.4.tgz#9e9f1e59dda86d3fd56afce71d1ea1b331f6f760"
@@ -2292,6 +2308,13 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-test-renderer@*":
+  version "16.9.2"
+  resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-16.9.2.tgz#e1c408831e8183e5ad748fdece02214a7c2ab6c5"
+  integrity sha512-4eJr1JFLIAlWhzDkBCkhrOIWOvOxcCAfQh+jiKg7l/nNZcCIL2MHl2dZhogIFKyHzedVWHaVP1Yydq/Ruu4agw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@^16.9.0":
   version "16.9.23"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.23.tgz#1a66c6d468ba11a8943ad958a8cb3e737568271c"
@@ -2325,6 +2348,14 @@
   integrity sha512-dZP+/WHndgCSmdaImITy0KhjGAa9c0hlGGkzefbtrPFpnGEPZECDA0zyvfSp8RKhHECJJSKHFExjOwzo0rHyIA==
   dependencies:
     "@types/jest" "*"
+
+"@types/testing-library__react-hooks@^3.0.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@types/testing-library__react-hooks/-/testing-library__react-hooks-3.2.0.tgz#52f3a109bef06080e3b1e3ae7ea1c014ce859897"
+  integrity sha512-dE8iMTuR5lzB+MqnxlzORlXzXyCL0EKfzH0w/lau20OpkHD37EaWjZDz0iNG8b71iEtxT4XKGmSKAGVEqk46mw==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-test-renderer" "*"
 
 "@types/testing-library__react@^10.0.0":
   version "10.0.0"
@@ -7056,6 +7087,11 @@ jest-haste-map@^24.9.0:
   optionalDependencies:
     fsevents "^1.2.7"
 
+jest-in-case@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/jest-in-case/-/jest-in-case-1.0.2.tgz#56744b5af33222bd0abab70cf919f1d170ab75cc"
+  integrity sha1-VnRLWvMyIr0KurcM+Rnx0XCrdcw=
+
 jest-jasmine2@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-jasmine2/-/jest-jasmine2-24.9.0.tgz#1f7b1bd3242c1774e62acabb3646d96afc3be6a0"
@@ -10224,6 +10260,11 @@ react-is@^16.8.1, react-is@^16.8.4:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
+react-is@^16.8.6:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
+  integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
 react-loader-spinner@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/react-loader-spinner/-/react-loader-spinner-3.1.5.tgz#e9a40c6032fddf0eba319e525cc613c5d698e4f9"
@@ -10331,6 +10372,16 @@ react-scripts@^3.4.1:
     workbox-webpack-plugin "4.3.1"
   optionalDependencies:
     fsevents "2.1.2"
+
+react-test-renderer@^16.13.0:
+  version "16.13.1"
+  resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-16.13.1.tgz#de25ea358d9012606de51e012d9742e7f0deabc1"
+  integrity sha512-Sn2VRyOK2YJJldOqoh8Tn/lWQ+ZiKhyZTPtaO0Q6yNj+QDbmRkVFap6pZPy3YQk8DScRDfyqm/KxKYP9gCMRiQ==
+  dependencies:
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    react-is "^16.8.6"
+    scheduler "^0.19.1"
 
 react@^16.13.0:
   version "16.13.0"
@@ -10993,6 +11044,14 @@ scheduler@^0.19.0:
   version "0.19.0"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.0.tgz#a715d56302de403df742f4a9be11975b32f5698d"
   integrity sha512-xowbVaTPe9r7y7RUejcK73/j8tt2jfiyTednOvHbA8JoClvMYCp+r8QegLwK/n8zWQAtZb1fFnER4XLBZXrCxA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+
+scheduler@^0.19.1:
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.19.1.tgz#4f3e2ed2c1a7d65681f4c854fa8c5a1ccb40f196"
+  integrity sha512-n/zwRWRYSUj0/3g/otKDRPMh6qv2SYMWNq85IEa8iZyAv8od9zDYpGSnpBEjNgcMNq6Scbu5KfIPxNF72R/2EA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"

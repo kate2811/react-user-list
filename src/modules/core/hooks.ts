@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useCallback } from 'react'
 import { addUser, editUser, loadUserList, removeUser } from './thunks'
 
-export function useUserId() {
+export function useUsersIds() {
   const userList = useSelector((state) => state.core.userList)
   return userList ? userList.map((item) => item.id) : null
 }
@@ -16,7 +16,7 @@ export function useRemoveUser() {
   const dispatch = useDispatch()
   return useCallback(
     (email) => {
-      return dispatch(removeUser(email))
+      dispatch(removeUser(email))
     },
     [dispatch]
   )
@@ -26,7 +26,7 @@ export function useAddUser() {
   const dispatch = useDispatch()
   return useCallback(
     (userData) => {
-      return dispatch(addUser(userData))
+      dispatch(addUser(userData))
     },
     [dispatch]
   )
@@ -36,7 +36,7 @@ export function useEditUser() {
   const dispatch = useDispatch()
   return useCallback(
     (userData) => {
-      return dispatch(editUser(userData))
+      dispatch(editUser(userData))
     },
     [dispatch]
   )
