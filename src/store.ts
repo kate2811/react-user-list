@@ -18,5 +18,7 @@ export const useSelector: <TSelected>(
 
 export default createStore(
   reducer,
-  composeWithDevTools({ name: 'UserList' })(applyMiddleware(thunk.withExtraArgument({ history: customHistory })))
+  composeWithDevTools({ name: 'UserList' })(
+    applyMiddleware(thunk.withExtraArgument({ history: customHistory, storage: localStorage }))
+  )
 )

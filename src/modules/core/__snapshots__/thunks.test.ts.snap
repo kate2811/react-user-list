@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`thunks addUser 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "age": 1,
+      "email": "jj",
+      "id": "1",
+      "name": "Elena",
+      "surname": "Ivanova",
+    },
+    "type": "[Core] Add a new user",
+  },
+]
+`;
+
+exports[`thunks editUser 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "age": 1,
+      "email": "jj",
+      "id": "2",
+      "name": "Elena",
+      "surname": "Ivanova",
+    },
+    "type": "[Core] Edit user",
+  },
+]
+`;
+
+exports[`thunks loadUserList 1`] = `
+Array [
+  Object {
+    "payload": undefined,
+    "type": "[Core] Load users list",
+  },
+  Object {
+    "payload": Array [
+      Object {
+        "age": 1,
+        "email": "jj",
+        "name": "Elena",
+        "surname": "Ivanova",
+      },
+    ],
+    "type": "[Core] Load users list success",
+  },
+]
+`;
+
+exports[`thunks removeUser confirmed 1`] = `
+Array [
+  Object {
+    "payload": "1",
+    "type": "[Core] Remove user",
+  },
+]
+`;
+
+exports[`thunks removeUser uncomfirmed 1`] = `Array []`;

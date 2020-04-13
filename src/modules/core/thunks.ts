@@ -3,44 +3,40 @@ import { User, UserData } from './types'
 import { State } from '../../store'
 import { v4 } from 'uuid'
 
-function updateUserList(getState: () => State) {
-  const currentUsers = getState().core.userList
-  localStorage.setItem('users', JSON.stringify(currentUsers))
-}
-
 export function removeUser(id: string) {
-  return function(dispatch: any, getState: () => State) {
+  return function(dispatch: any, getState: () => State, { storage }: any) {
     if (window.confirm('Do you really want to remove this user?')) {
       dispatch(actions.removeUser(id))
-      updateUserList(getState)
+      storage.setItem('users', JSON.stringify(getState().core.userList))
     }
   }
 }
 
 export function addUser(userData: UserData) {
-  return function(dispatch: any, getState: () => State, { history }: any) {
+  return function(dispatch: any, getState: () => State, { history, storage }: any) {
     const id = v4()
     const currentUsers = getState().core.userList
     const allUsers = [...currentUsers, { ...userData, id }]
-    localStorage.setItem('users', JSON.stringify(allUsers))
+    console.log(storage)
+    storage.setItem('users', JSON.stringify(allUsers))
     dispatch(actions.addUser({ ...userData, id }))
     history.push('/')
   }
 }
 
 export function editUser(userData: User) {
-  return function(dispatch: any, getState: () => State, { history }: any) {
+  return function(dispatch: any, getState: () => State, { history, storage }: any) {
     dispatch(actions.editUser(userData))
-    updateUserList(getState)
+    storage.setItem('users', JSON.stringify(getState().core.userList))
     history.push('/')
   }
 }
 
 export function loadUserList() {
-  return function(dispatch: any) {
+  return function(dispatch: any, getState: () => State, { storage }: any) {
     dispatch(actions.loadUserList())
-    new Promise((resolve) => {
-      setTimeout(() => resolve(JSON.parse(localStorage.getItem('users') as string) || []), 2000)
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(JSON.parse(storage.getItem('users') as string) || []), 2000)
     }).then((result) => dispatch(actions.loadUserListSuccess(result)))
   }
 }
