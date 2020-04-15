@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
-import { Router, Route, Switch } from 'react-router-dom'
+import { Route, Router, Switch } from 'react-router-dom'
 import MainPage from '../MainPage'
 import AddUserPage from '../AddUserPage'
 import EditUserPage from '../EditUserPage'
-import { useLoadUserList } from '../../modules/core/hooks'
 import { customHistory } from '../../history'
+import { useLoadUserList } from '../../modules/core/hooks'
 
-function App() {
+const App: React.FC = () => {
   const loadUserList = useLoadUserList()
-
   useEffect(() => {
     loadUserList()
   }, [loadUserList])

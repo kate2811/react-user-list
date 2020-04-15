@@ -50,21 +50,22 @@ describe('thunks', () => {
     expect(storage.setItem).toHaveBeenCalledWith('users', JSON.stringify(currentUsers))
   })
 
-  it('removeUser uncomfirmed', () => {
-    window.confirm = jest.fn(() => false)
-    store.dispatch(removeUser('1'))
+  describe('removeUser', () => {
+    it('removeUser uncomfirmed', () => {
+      window.confirm = jest.fn(() => false)
+      store.dispatch(removeUser('1'))
 
-    expect(store.getActions()).toMatchSnapshot()
-    expect(store.getActions()).toHaveLength(0)
-    expect(storage.setItem).toHaveBeenCalledTimes(0)
-  })
+      expect(store.getActions()).toHaveLength(0)
+      expect(storage.setItem).toHaveBeenCalledTimes(0)
+    })
 
-  it('editUser', () => {
-    store.dispatch(editUser({ ...mockUserData, id: '2' }))
+    it('editUser', () => {
+      store.dispatch(editUser({ ...mockUserData, id: '2' }))
 
-    expect(store.getActions()).toMatchSnapshot()
-    expect(storage.setItem).toHaveBeenCalledTimes(1)
-    expect(storage.setItem).toHaveBeenCalledWith('users', JSON.stringify(currentUsers))
+      expect(store.getActions()).toMatchSnapshot()
+      expect(storage.setItem).toHaveBeenCalledTimes(1)
+      expect(storage.setItem).toHaveBeenCalledWith('users', JSON.stringify(currentUsers))
+    })
   })
 
   it('loadUserList', async () => {

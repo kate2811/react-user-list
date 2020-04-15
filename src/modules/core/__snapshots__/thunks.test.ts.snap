@@ -59,4 +59,19 @@ Array [
 ]
 `;
 
+exports[`thunks removeUser editUser 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "age": 1,
+      "email": "jj",
+      "id": "2",
+      "name": "Elena",
+      "surname": "Ivanova",
+    },
+    "type": "[Core] Edit user",
+  },
+]
+`;
+
 exports[`thunks removeUser uncomfirmed 1`] = `Array []`;
