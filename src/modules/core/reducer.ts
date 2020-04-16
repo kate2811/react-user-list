@@ -4,6 +4,7 @@ import { ActionTypes } from './actions'
 
 const initialState: CoreModuleState = {
   userList: [],
+  filters: {},
   isLoading: false
 }
 
@@ -33,6 +34,11 @@ export default function coreReducer(state = initialState, action: any): CoreModu
       case ActionTypes.loadUserListSuccess: {
         draft.userList = action.payload
         draft.isLoading = false
+        return draft
+      }
+
+      case ActionTypes.setFilters: {
+        draft.filters = action.payload
         return draft
       }
 

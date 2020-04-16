@@ -2,6 +2,8 @@ import { useSelector } from '../../store'
 import { useDispatch } from 'react-redux'
 import { useCallback } from 'react'
 import { addUser, editUser, loadUserList, removeUser } from './thunks'
+import { Filters } from './types'
+import actions from './actions'
 
 export function useUsersIds() {
   const userList = useSelector((state) => state.core.userList)
@@ -10,6 +12,18 @@ export function useUsersIds() {
 
 export function useUserById(id: string) {
   return useSelector((state) => state.core.userList).find((item) => item.id === id)
+}
+
+export function useFilteredUsers() {
+  const userList = useSelector((state) => state.core.userList)
+  const filters = useSelector((state) => state.core.filters)
+  return userList
+}
+
+export function useFiltersProps() {
+  const dispatch = useDispatch()
+  const value = useSelector((state) => state.core.filters)
+  return { value, onChange: useCallback((value: Filters) => dispatch(actions.setFilters(value)), [dispatch]) }
 }
 
 export function useRemoveUser() {

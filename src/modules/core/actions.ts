@@ -1,9 +1,12 @@
+import { Filters } from './types'
+
 export enum ActionTypes {
   removeUser = '[Core] Remove user',
   addUser = '[Core] Add a new user',
   editUser = '[Core] Edit user',
   loadUserList = '[Core] Load users list',
-  loadUserListSuccess = '[Core] Load users list success'
+  loadUserListSuccess = '[Core] Load users list success',
+  setFilters = '[Core] Set filters'
 }
 
 function createAction<T, P>(type: T) {
@@ -17,5 +20,6 @@ export default {
   addUser: createAction(ActionTypes.addUser),
   editUser: createAction(ActionTypes.editUser),
   loadUserList: createAction<ActionTypes.loadUserList, void>(ActionTypes.loadUserList),
-  loadUserListSuccess: createAction(ActionTypes.loadUserListSuccess)
+  loadUserListSuccess: createAction(ActionTypes.loadUserListSuccess),
+  setFilters: createAction<ActionTypes.setFilters, Filters>(ActionTypes.setFilters)
 }
