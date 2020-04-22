@@ -2,9 +2,13 @@ import produce from 'immer'
 import { CoreModuleState } from './types'
 import { ActionTypes } from './actions'
 
-const initialState: CoreModuleState = {
+export const initialState: CoreModuleState = {
   userList: [],
-  filters: {},
+  filters: {
+    query: '',
+    minAge: null,
+    maxAge: null
+  },
   isLoading: false
 }
 
@@ -38,6 +42,16 @@ export default function coreReducer(state = initialState, action: any): CoreModu
       }
 
       case ActionTypes.setFilters: {
+        draft.filters = action.payload
+        return draft
+      }
+
+      case ActionTypes.resetFilters: {
+        draft.filters = action.payload
+        return draft
+      }
+
+      case ActionTypes.setFiltersFromUrl: {
         draft.filters = action.payload
         return draft
       }

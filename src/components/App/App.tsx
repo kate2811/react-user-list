@@ -4,13 +4,17 @@ import MainPage from '../MainPage'
 import AddUserPage from '../AddUserPage'
 import EditUserPage from '../EditUserPage'
 import { customHistory } from '../../history'
-import { useLoadUserList } from '../../modules/core/hooks'
+import { useSetFiltersFromUrl, useLoadUserList } from '../../modules/core/hooks'
 
 const App: React.FC = () => {
+  let searchParams = new URLSearchParams(window.location.search.slice(1))
   const loadUserList = useLoadUserList()
+  const setFiltersFromUrl = useSetFiltersFromUrl()
+
   useEffect(() => {
     loadUserList()
-  }, [loadUserList])
+    setFiltersFromUrl(searchParams)
+  }, [loadUserList, setFiltersFromUrl, searchParams])
 
   return (
     <Router history={customHistory}>

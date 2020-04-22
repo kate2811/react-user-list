@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import TableItem from '../TableItem'
 import PageLayout from '../PageLayout'
@@ -6,15 +6,13 @@ import Loader from 'react-loader-spinner'
 import style from './MainPage.module.css'
 import cx from 'classnames'
 import SearchForm from '../SearchForm'
-import { Filters } from '../../modules/core/types'
 
 type Props = {
   isLoading: boolean
   userIdList: string[] | null
-  filterProps: { value: Filters; onChange: (filters: Filters) => void }
 }
 
-const MainPage: React.FC<Props> = ({ isLoading, userIdList, filterProps }) => {
+const MainPage: React.FC<Props> = ({ isLoading, userIdList }) => {
   return (
     <PageLayout title={'User list'}>
       {isLoading ? (
@@ -23,7 +21,7 @@ const MainPage: React.FC<Props> = ({ isLoading, userIdList, filterProps }) => {
         </div>
       ) : (
         <>
-          <SearchForm className={style.searchForm} onChange={filterProps.onChange} value={filterProps.value} />
+          <SearchForm className={style.searchForm} />
           <table className={cx('table', 'table-hover')}>
             <thead className="bg-light">
               <tr>
