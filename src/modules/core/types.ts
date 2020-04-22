@@ -15,8 +15,14 @@ export type UserData = {
 
 export type Filters = { query?: string; minAge?: number | null; maxAge?: number | null }
 
+export type Age = {
+  min: number
+  max: number
+}
+
 export type CoreModuleState = {
   userList: User[]
   filters: Filters
   isLoading: boolean
+  requiredAge: Age
 }

@@ -11,9 +11,15 @@ type Props = {
   onChange: (filters: Filters) => void
   onReset: () => void
   value: Filters
+  minAge: number
+  maxAge: number
 }
 
-const SearchForm: React.FC<Props> = ({ className, onChange, onReset, value }) => {
+const maxRequiredAge = 59
+const minRequiredAge = 1
+
+const SearchForm: React.FC<Props> = ({ className, onChange, onReset, value, minAge, maxAge }) => {
+  console.log(maxAge, minAge)
   const onChangeFilters = useCallback(
     (filter) => {
       onChange(Object.assign({}, value, filter))
@@ -30,6 +36,7 @@ const SearchForm: React.FC<Props> = ({ className, onChange, onReset, value }) =>
 
   const onChangeRange = useCallback(
     (value) => {
+      console.log(value)
       onChangeFilters({ minAge: value[0], maxAge: value[1] })
     },
     [onChangeFilters]
@@ -52,8 +59,8 @@ const SearchForm: React.FC<Props> = ({ className, onChange, onReset, value }) =>
       />
       <Range
         className={cx(style.input, style.range)}
-        min={0}
-        max={60}
+        min={Number.isFinite(minAge) && minAge !== maxAge ? minAge : minRequiredAge}
+        max={Number.isFinite(maxAge) && minAge !== maxAge ? maxAge : maxRequiredAge}
         value={[value.minAge as number, value.maxAge as number]}
         onChange={(value) => onChangeRange(value)}
       />

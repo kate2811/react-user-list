@@ -4,7 +4,18 @@ import { useCallback } from 'react'
 import { addUser, editUser, loadUserList, onFiltersChange, onFiltersReset, removeUser } from './thunks'
 import { Filters } from './types'
 import actions from './actions'
-import { getFilteredUsersIds } from './selectors'
+import { getFilteredUsersIds, getUsersMaxAge, getUsersMinAge } from './selectors'
+
+export function useRequiredAge() {
+  return useSelector((state) => state.core.requiredAge)
+}
+export function useUsersMinAge() {
+  return useSelector(getUsersMinAge)
+}
+
+export function useUsersMaxAge() {
+  return useSelector(getUsersMaxAge)
+}
 
 export function useUsersIds() {
   return useSelector(getFilteredUsersIds)

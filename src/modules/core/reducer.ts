@@ -9,7 +9,8 @@ export const initialState: CoreModuleState = {
     minAge: null,
     maxAge: null
   },
-  isLoading: false
+  isLoading: false,
+  requiredAge: { min: 1, max: 59 }
 }
 
 export default function coreReducer(state = initialState, action: any): CoreModuleState {

@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { User, UserData } from '../../modules/core/types'
+import { Age, User, UserData } from '../../modules/core/types'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import TextInput from './TextInput'
@@ -9,9 +9,10 @@ import cx from 'classnames'
 type Props = {
   onSave(userData: UserData): void
   user?: User
+  requiredAge: Age
 }
 
-const UserForm: React.FC<Props> = ({ onSave, user }) => {
+const UserForm: React.FC<Props> = ({ onSave, user, requiredAge }) => {
   const validationSchema = useMemo(() => {
     return Yup.object({
       name: Yup.string()
@@ -24,11 +25,11 @@ const UserForm: React.FC<Props> = ({ onSave, user }) => {
         .email('Invalid email address')
         .required('Required'),
       age: Yup.number()
-        .moreThan(0, 'User must be older than 0 year old')
-        .lessThan(60, 'User must be younger than 60 years old')
+        .min(requiredAge.min, 'User must be older than 0 year old')
+        .max(requiredAge.max, 'User must be younger than 60 years old')
         .required('Required')
     })
-  }, [])
+  }, [requiredAge])
 
   const onSubmit = useCallback(
     (values: Omit<User, 'id'>) => {
