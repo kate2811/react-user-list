@@ -1,7 +1,6 @@
 import actions from './actions'
 import { Filters, User, UserData } from './types'
 import { State } from '../../store'
-import { initialState } from './reducer'
 
 import { v4 } from 'uuid'
 
@@ -16,6 +15,7 @@ export function removeUser(id: string) {
 
 export function addUser(userData: UserData) {
   return function(dispatch: any, getState: () => State, { history, storage }: any) {
+    dispatch(actions.resetFilters({ query: '', minAge: 1, maxAge: 59 }))
     const id = v4()
     const currentUsers = getState().core.userList
     const allUsers = [...currentUsers, { ...userData, id }]
@@ -27,6 +27,7 @@ export function addUser(userData: UserData) {
 
 export function editUser(userData: User) {
   return function(dispatch: any, getState: () => State, { history, storage }: any) {
+    dispatch(actions.resetFilters({ query: '', minAge: 1, maxAge: 59 }))
     dispatch(actions.editUser(userData))
     storage.setItem('users', JSON.stringify(getState().core.userList))
     history.push('/')
@@ -61,9 +62,9 @@ export function onFiltersChange(value: Filters) {
   }
 }
 
-export function onFiltersReset() {
+export function onFiltersReset(minAge: number, maxAge: number) {
   return function(dispatch: any, getState: () => State, { history }: any) {
-    dispatch(actions.resetFilters(initialState.filters))
+    dispatch(actions.resetFilters({ query: '', minAge: minAge, maxAge: maxAge }))
     history.push('/')
   }
 }

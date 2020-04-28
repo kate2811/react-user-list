@@ -4,17 +4,18 @@ import { useCallback } from 'react'
 import { addUser, editUser, loadUserList, onFiltersChange, onFiltersReset, removeUser } from './thunks'
 import { Filters } from './types'
 import actions from './actions'
-import { getFilteredUsersIds, getUsersMaxAge, getUsersMinAge } from './selectors'
+import { getFilteredUsersIds, getRangeState } from './selectors'
 
 export function useRequiredAge() {
   return useSelector((state) => state.core.requiredAge)
 }
-export function useUsersMinAge() {
-  return useSelector(getUsersMinAge)
+
+export function useRangeState() {
+  return useSelector(getRangeState)
 }
 
-export function useUsersMaxAge() {
-  return useSelector(getUsersMaxAge)
+export function useSortParams() {
+  return useSelector((state) => state.core.sortParams)
 }
 
 export function useUsersIds() {
@@ -25,13 +26,29 @@ export function useUserById(id: string) {
   return useSelector((state) => state.core.userList).find((item) => item.id === id)
 }
 
+export function useSetSortParams() {
+  const dispatch = useDispatch()
+  const { direction, field } = useSelector((state) => state.core.sortParams)
+  return useCallback(
+    (newSortField: string) => {
+      dispatch(
+        actions.setSortParams({
+          field: newSortField,
+          direction: field === newSortField && direction === 'asc' ? 'desc' : 'asc'
+        })
+      )
+    },
+    [direction, dispatch, field]
+  )
+}
+
 export function useFiltersProps() {
   const dispatch = useDispatch()
   const value = useSelector((state) => state.core.filters)
   return {
     value,
     onChange: useCallback((value: Filters) => dispatch(onFiltersChange(value)), [dispatch]),
-    onReset: useCallback(() => dispatch(onFiltersReset()), [dispatch])
+    onReset: useCallback((minAge, maxAge) => dispatch(onFiltersReset(minAge, maxAge)), [dispatch])
   }
 }
 

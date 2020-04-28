@@ -1,25 +1,18 @@
 import React, { useCallback } from 'react'
 import cx from 'classnames'
 import { Filters } from '../../modules/core/types'
-import 'rc-slider/assets/index.css'
-import 'rc-tooltip/assets/bootstrap.css'
-import { Range, createSliderWithTooltip } from 'rc-slider'
 import style from './SearchForm.module.css'
+import { Slider } from 'antd'
 
 type Props = {
   className?: string
   onChange: (filters: Filters) => void
-  onReset: () => void
+  onReset: (minAge: number, maxAge: number) => void
   value: Filters
-  minAge: number
-  maxAge: number
+  rangeState: { extremValues: (number | undefined)[]; disable: boolean }
 }
 
-const maxRequiredAge = 59
-const minRequiredAge = 1
-
-const SearchForm: React.FC<Props> = ({ className, onChange, onReset, value, minAge, maxAge }) => {
-  console.log(maxAge, minAge)
+const SearchForm: React.FC<Props> = ({ className, onChange, onReset, value, rangeState }) => {
   const onChangeFilters = useCallback(
     (filter) => {
       onChange(Object.assign({}, value, filter))
@@ -36,15 +29,10 @@ const SearchForm: React.FC<Props> = ({ className, onChange, onReset, value, minA
 
   const onChangeRange = useCallback(
     (value) => {
-      console.log(value)
       onChangeFilters({ minAge: value[0], maxAge: value[1] })
     },
     [onChangeFilters]
   )
-
-  const onResetClick = useCallback(() => {
-    onReset()
-  }, [onReset])
 
   return (
     <div className={className}>
@@ -57,14 +45,18 @@ const SearchForm: React.FC<Props> = ({ className, onChange, onReset, value, minA
         value={value.query}
         onChange={onChangeQuery}
       />
-      <Range
-        className={cx(style.input, style.range)}
-        min={Number.isFinite(minAge) && minAge !== maxAge ? minAge : minRequiredAge}
-        max={Number.isFinite(maxAge) && minAge !== maxAge ? maxAge : maxRequiredAge}
+      <Slider
+        range
+        min={rangeState.extremValues[0]}
+        max={rangeState.extremValues[1]}
         value={[value.minAge as number, value.maxAge as number]}
-        onChange={(value) => onChangeRange(value)}
+        onChange={onChangeRange}
+        disabled={rangeState.disable}
       />
-      <button className={cx('btn', 'btn-dark')} onClick={onResetClick}>
+      <button
+        className={cx('btn', 'btn-dark')}
+        onClick={() => onReset(rangeState.extremValues[0] as number, rangeState.extremValues[1] as number)}
+      >
         Reset
       </button>
     </div>

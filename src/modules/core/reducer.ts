@@ -6,9 +6,10 @@ export const initialState: CoreModuleState = {
   userList: [],
   filters: {
     query: '',
-    minAge: null,
-    maxAge: null
+    minAge: 1,
+    maxAge: 59
   },
+  sortParams: { direction: undefined, field: undefined },
   isLoading: false,
   requiredAge: { min: 1, max: 59 }
 }
@@ -54,6 +55,11 @@ export default function coreReducer(state = initialState, action: any): CoreModu
 
       case ActionTypes.setFiltersFromUrl: {
         draft.filters = action.payload
+        return draft
+      }
+
+      case ActionTypes.setSortParams: {
+        draft.sortParams = action.payload
         return draft
       }
 

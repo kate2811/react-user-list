@@ -6,6 +6,8 @@ import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 import store from './store'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'antd/dist/antd.css'
+import '@fortawesome/fontawesome-free/css/all.css'
 
 ReactDOM.render(
   <Provider store={store}>

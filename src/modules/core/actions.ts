@@ -8,7 +8,8 @@ export enum ActionTypes {
   loadUserListSuccess = '[Core] Load users list success',
   setFilters = '[Core] Set filters',
   resetFilters = '[Core] Reset filters',
-  setFiltersFromUrl = '[Core] Set filters from url queries'
+  setFiltersFromUrl = '[Core] Set filters from url queries',
+  setSortParams = '[Core] Set sort params'
 }
 
 function createAction<T, P>(type: T) {
@@ -25,5 +26,6 @@ export default {
   loadUserListSuccess: createAction(ActionTypes.loadUserListSuccess),
   setFilters: createAction<ActionTypes.setFilters, Filters>(ActionTypes.setFilters),
   resetFilters: createAction(ActionTypes.resetFilters),
-  setFiltersFromUrl: createAction(ActionTypes.setFiltersFromUrl)
+  setFiltersFromUrl: createAction(ActionTypes.setFiltersFromUrl),
+  setSortParams: createAction(ActionTypes.setSortParams)
 }

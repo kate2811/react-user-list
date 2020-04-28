@@ -6,3 +6,21 @@
 .searchForm {
   margin-bottom: 30px;
 }
+
+.tableHead {
+  position: relative;
+  text-transform: capitalize;
+}
+
+.tableHead__title {
+  margin-right: 10px;
+}
+
+.tableHead i {
+  position: absolute;
+  top: 15px;
+}
+
+.tableHead i:first-of-type {
+  opacity: 0.4;
+}
