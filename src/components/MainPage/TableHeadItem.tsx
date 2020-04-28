@@ -17,7 +17,7 @@ const TableHeadItem: React.FC<Props> = ({ name, isSortable, setSortParams, sortP
         <th scope="col" onClick={() => setSortParams(name)} className={style.tableHead}>
           <span className={style.tableHead__title}>{name}</span>
           <i className="fas fa-sort" />
-          {sortParams.field === name && (
+          {sortParams.field === name && sortParams.direction && (
             <i className={cx('fas', sortParams.direction === 'asc' ? 'fa-sort-down' : 'fa-sort-up')} />
           )}
         </th>

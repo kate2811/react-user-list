@@ -34,7 +34,7 @@ export function useSetSortParams() {
       dispatch(
         actions.setSortParams({
           field: newSortField,
-          direction: field === newSortField && direction === 'asc' ? 'desc' : 'asc'
+          direction: field === newSortField && direction === 'asc' ? 'desc' : direction === 'desc' ? undefined : 'asc'
         })
       )
     },
